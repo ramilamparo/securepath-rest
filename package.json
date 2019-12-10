@@ -1,0 +1,21 @@
+{
+	"name": "securepath-rest",
+	"version": "1.0.0",
+	"description": "",
+	"main": "src/index.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc",
+		"run": "npm run build && node ./build"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@types/express": "^4.17.2",
+		"axios": "^0.19.0",
+		"body-parser": "^1.19.0",
+		"express": "^4.17.1",
+		"md5-hex": "^3.0.1",
+		"typescript": "^3.7.3"
+	}
+}
