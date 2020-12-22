@@ -19,6 +19,10 @@ export interface ServerResponseMeta {
 	message: string;
 }
 
+export interface ServerResponse<T> extends ServerResponseMeta {
+	data: T;
+}
+
 export type FieldError =
 	| string
 	| {
@@ -28,7 +32,7 @@ export type FieldError =
 
 export class ResponseBuilder<T> {
 	constructor(
-		public data: T | null = null,
+		public data: T,
 		public meta: ServerResponseMeta = {
 			success: false,
 			message: "Unknown server error",
@@ -84,7 +88,7 @@ export class ResponseBuilder<T> {
 		res.status(200);
 	};
 
-	public toObject = () => {
+	public toObject = (): ServerResponse<T> => {
 		return {
 			data: this.data,
 			...this.meta

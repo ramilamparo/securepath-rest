@@ -1,7 +1,7 @@
 import express from "express";
 import { SecurePath } from "securepath-api";
 import { baseUrl } from "../config/securepath";
-import { ResponseBuilder } from "../utils";
+import { ResponseBuilder, ServerResponse } from "../utils";
 
 export const router = express.Router();
 
@@ -10,12 +10,12 @@ export interface LoginServerParams {
 	password: string;
 }
 
-export interface LoginServerResponse {}
+export type LoginServerResponse = ServerResponse<null>;
 
 router.post<{}, LoginServerResponse, LoginServerParams>(
 	"login",
 	async (req, res) => {
-		const response = new ResponseBuilder();
+		const response = new ResponseBuilder(null);
 
 		try {
 			const session = await SecurePath.login(
@@ -25,9 +25,8 @@ router.post<{}, LoginServerResponse, LoginServerParams>(
 					baseUrl
 				}
 			);
-
 			response.handleExpressSuccess("Successfully logged in!", res);
-			res.json(response.toObject).setHeader("set-cookie", session.authCookie);
+			res.json(response.toObject()).setHeader("set-cookie", session.authCookie);
 		} catch (e) {
 			response.handleExpressError(e, res);
 		}
