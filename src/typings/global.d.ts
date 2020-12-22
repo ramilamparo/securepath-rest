@@ -11,6 +11,7 @@ declare global {
 	namespace NodeJS {
 		interface ProcessEnv {
 			SECUREPATH_BASE_URL: string;
+			PORT: string;
 		}
 	}
 }
