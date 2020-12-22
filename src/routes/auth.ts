@@ -13,10 +13,9 @@ export interface LoginServerParams {
 export type LoginServerResponse = ServerResponse<null>;
 
 router.post<{}, LoginServerResponse, LoginServerParams>(
-	"login",
+	"/login",
 	async (req, res) => {
 		const response = new ResponseBuilder(null);
-
 		try {
 			const session = await SecurePath.login(
 				req.body.username,
@@ -26,10 +25,11 @@ router.post<{}, LoginServerResponse, LoginServerParams>(
 				}
 			);
 			response.handleExpressSuccess("Successfully logged in!", res);
-			res.json(response.toObject()).setHeader("set-cookie", session.authCookie);
+			res.setHeader("set-cookie", session.authCookie);
 		} catch (e) {
 			response.handleExpressError(e, res);
 		}
+		return res.json(response.toObject());
 	}
 );
 

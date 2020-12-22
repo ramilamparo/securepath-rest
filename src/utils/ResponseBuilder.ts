@@ -75,10 +75,10 @@ export class ResponseBuilder<T> {
 			this.setMessage("Invalid credentails");
 			res.status(403);
 		} else {
-			console.error(e);
 			this.setMessage(e.message);
 			res.status(500);
 		}
+		this.setSuccess(false);
 	};
 
 	public handleExpressSuccess = (message: string, res: Response) => {
