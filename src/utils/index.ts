@@ -1,2 +1,2 @@
-export * from "./Response";
+export * from "./ResponseBuilder";
 export * from "./AxiosHelpers";
