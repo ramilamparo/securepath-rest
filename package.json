@@ -7,7 +7,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "tsc",
 		"run": "npm run build && node ./build",
-		"format": "prettier --write \"**/*.ts\" \"**/*.js\" \"**/*.json\""
+		"format": "prettier --write \"**/*.ts\" \"**/*.json\""
 	},
 	"author": "",
 	"license": "ISC",
@@ -19,5 +19,8 @@
 		"md5-hex": "^3.0.1",
 		"securepath-api": "git+https://github.com/ramilamparo/securepath-api.git#v1.0.0",
 		"typescript": "^3.7.3"
+	},
+	"devDependencies": {
+		"prettier": "^2.2.1"
 	}
 }
